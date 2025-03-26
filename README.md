@@ -22,8 +22,7 @@ Este proyecto es un sistema web para gestionar repertorios corales, diseñado es
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/repertorio-coral.git
-cd repertorio-coral
+git clone https://github.com/Crihtian/AppCoro
 ```
 
 2. Crear y activar entorno virtual:
