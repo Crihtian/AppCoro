@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Repertorio Musical</h1>
+    
+    <div class="row">
+        {% for categoria in categorias %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ categoria.nombre }}</h5>
+                    <p class="card-text">{{ categoria.descripcion }}</p>
+                    <a href="#" class="btn btn-primary">Ver Contenido</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>No hay categorías disponibles.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

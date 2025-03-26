@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Bienvenido al Sistema de Gestión Musical</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Repertorio</h5>
+                    <p class="card-text">Gestiona tu colección de partituras y repertorio musical.</p>
+                    <a href="{% url 'repertorio:lista' %}" class="btn btn-primary">Ir al Repertorio</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Calendario</h5>
+                    <p class="card-text">Organiza tus ensayos y eventos musicales.</p>
+                    <a href="{% url 'calendario:calendario' %}" class="btn btn-primary">Ir al Calendario</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recursos</h5>
+                    <p class="card-text">Accede a recursos y materiales musicales.</p>
+                    <a href="{% url 'recursos:lista' %}" class="btn btn-primary">Ir a Recursos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

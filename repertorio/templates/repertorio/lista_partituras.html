@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Repertorio de Partituras</h1>
+    
+    <div class="row">
+        {% for partitura in partituras %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ partitura.titulo }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ partitura.compositor }}</h6>
+                    <p class="card-text">
+                        <strong>Instrumento:</strong> {{ partitura.instrumento }}<br>
+                        <strong>Dificultad:</strong> {{ partitura.dificultad }}<br>
+                        <strong>Fecha:</strong> {{ partitura.fecha_agregada|date:"d/m/Y" }}
+                    </p>
+                    <a href="{{ partitura.archivo.url }}" class="btn btn-primary" target="_blank">Ver Partitura</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>No hay partituras disponibles.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 
