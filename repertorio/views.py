@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Cancion
 from .forms import CancionForm
-from .decorators import director_required
 
 # Create your views here.
 
@@ -14,11 +13,15 @@ def lista_canciones(request):
     return render(request, 'repertorio/lista_canciones.html', {
         'canciones': canciones,
         'repertorios': repertorios,
-        'es_director': hasattr(request.user, 'director')
+        'es_director': request.user.groups.filter(name='director').exists()
     })
 
-@director_required
+@login_required
 def agregar_cancion(request):
+    if not request.user.groups.filter(name='director').exists():
+        messages.error(request, 'No tienes permisos para agregar canciones.')
+        return redirect('repertorio:lista')
+        
     if request.method == 'POST':
         form = CancionForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,6 +33,4 @@ def agregar_cancion(request):
     else:
         form = CancionForm()
     
-    return render(request, 'repertorio/agregar_cancion.html', {
-        'form': form
-    })
+    return render(request, 'repertorio/agregar_cancion.html', {'form': form})

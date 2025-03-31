@@ -1,37 +1,47 @@
 {% extends 'base.html' %}
 
+{% block title %}Inicio - Sistema de Gestión de Coro{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
-    <h1>Bienvenido al Sistema de Gestión Musical</h1>
-    
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Repertorio</h5>
-                    <p class="card-text">Gestiona tu colección de partituras y repertorio musical.</p>
-                    <a href="{% url 'repertorio:lista' %}" class="btn btn-primary">Ir al Repertorio</a>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-white mb-4">Bienvenido al Sistema de Gestión del Coro</h1>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Repertorio Musical</h5>
+                            <p class="card-text">Accede al repertorio musical del coro, incluyendo partituras y archivos MIDI.</p>
+                            <a href="{% url 'repertorio:lista' %}" class="btn btn-light">Ver Repertorio</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Calendario</h5>
-                    <p class="card-text">Organiza tus ensayos y eventos musicales.</p>
-                    <a href="{% url 'calendario:calendario' %}" class="btn btn-primary">Ir al Calendario</a>
+
+                {% if es_director %}
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestionar Repertorio</h5>
+                            <p class="card-text">Añade nuevas canciones al repertorio y gestiona las existentes.</p>
+                            <a href="{% url 'repertorio:agregar' %}" class="btn btn-light">Agregar Canción</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Recursos</h5>
-                    <p class="card-text">Accede a recursos y materiales musicales.</p>
-                    <a href="{% url 'recursos:lista' %}" class="btn btn-primary">Ir a Recursos</a>
+                {% endif %}
+
+                {% if user.is_staff %}
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-dark text-white h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Gestión de Usuarios</h5>
+                            <p class="card-text">Gestiona los usuarios del sistema, crea nuevos usuarios y asigna roles.</p>
+                            <a href="{% url 'usuarios:lista_usuarios' %}" class="btn btn-light">Gestionar Usuarios</a>
+                        </div>
+                    </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

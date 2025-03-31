@@ -4,11 +4,17 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-12">
-            <h1>Agregar Nueva Canción</h1>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="text-white">Agregar Nueva Canción</h1>
+                <a href="{% url 'repertorio:lista' %}" class="btn btn-light">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+            </div>
+
             <form method="post" enctype="multipart/form-data" class="mt-4">
                 {% csrf_token %}
                 
-                <div class="card mb-4">
+                <div class="card bg-dark text-white mb-4">
                     <div class="card-header">
                         <h5 class="mb-0">Información Básica</h5>
                     </div>
@@ -16,71 +22,38 @@
                         <div class="mb-3">
                             <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre de la Canción</label>
                             {{ form.nombre }}
+                            {% if form.nombre.errors %}
+                            <div class="text-danger mt-1">{{ form.nombre.errors }}</div>
+                            {% endif %}
                         </div>
                         <div class="mb-3">
                             <label for="{{ form.artista.id_for_label }}" class="form-label">Artista</label>
                             {{ form.artista }}
+                            {% if form.artista.errors %}
+                            <div class="text-danger mt-1">{{ form.artista.errors }}</div>
+                            {% endif %}
                         </div>
                         <div class="mb-3">
                             <label for="{{ form.repertorio.id_for_label }}" class="form-label">Repertorio</label>
                             {{ form.repertorio }}
+                            {% if form.repertorio.errors %}
+                            <div class="text-danger mt-1">{{ form.repertorio.errors }}</div>
+                            {% endif %}
                         </div>
                         <div class="mb-3">
                             <label for="{{ form.partitura.id_for_label }}" class="form-label">Partitura (PDF)</label>
                             {{ form.partitura }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5 class="mb-0">Archivos MIDI por Voz</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="{{ form.soprano_midi.id_for_label }}" class="form-label">Soprano</label>
-                                    {{ form.soprano_midi }}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.mezzosoprano_midi.id_for_label }}" class="form-label">Mezzosoprano</label>
-                                    {{ form.mezzosoprano_midi }}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.contralto_midi.id_for_label }}" class="form-label">Contralto</label>
-                                    {{ form.contralto_midi }}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.contralto2_midi.id_for_label }}" class="form-label">Contralto 2</label>
-                                    {{ form.contralto2_midi }}
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="{{ form.tenor_midi.id_for_label }}" class="form-label">Tenor</label>
-                                    {{ form.tenor_midi }}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.tenor2_midi.id_for_label }}" class="form-label">Tenor 2</label>
-                                    {{ form.tenor2_midi }}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.baritono_midi.id_for_label }}" class="form-label">Barítono</label>
-                                    {{ form.baritono_midi }}
-                                </div>
-                                <div class="mb-3">
-                                    <label for="{{ form.bajo_midi.id_for_label }}" class="form-label">Bajo</label>
-                                    {{ form.bajo_midi }}
-                                </div>
-                            </div>
+                            {% if form.partitura.errors %}
+                            <div class="text-danger mt-1">{{ form.partitura.errors }}</div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{% url 'repertorio:lista' %}" class="btn btn-secondary me-md-2">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Guardar Canción</button>
+                    <button type="submit" class="btn btn-light">
+                        <i class="fas fa-save"></i> Guardar Canción
+                    </button>
                 </div>
             </form>
         </div>

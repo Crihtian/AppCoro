@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Gestión de Coro{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Barra superior -->
+    <div class="top-bar">
+        <h1 class="page-title">Sistema de Gestión de Coro</h1>
+        <div class="user-info">
+            <span class="user-name">{{ user.get_full_name }}</span>
+            <span class="user-role">{{ cuerda }}</span>
+            <a href="{% url 'login' %}" class="btn btn-logout">Cerrar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Barra lateral -->
+    <nav class="sidebar">
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="{% url 'usuarios:lobby' %}" class="sidebar-link">Inicio</a>
+            </li>
+            {% if user.is_staff %}
+            <li class="sidebar-item">
+                <a href="{% url 'usuarios:lista_usuarios' %}" class="sidebar-link">Gestión de Usuarios</a>
+            </li>
+            {% endif %}
+            <li class="sidebar-item">
+                <a href="{% url 'repertorio:lista' %}" class="sidebar-link">Repertorio</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">Eventos</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">Galería Multimedia</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
